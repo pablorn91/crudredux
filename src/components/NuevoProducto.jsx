@@ -1,5 +1,6 @@
 import { useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 //Actions de Redux
 import { crearNuevoProductoAction } from '../actions/productoActions'
@@ -11,6 +12,12 @@ const NuevoProducto = () => {
 
     //utilizar useDispatch y crea una funcion
     const dispatch = useDispatch()
+
+    const navigate = useNavigate()
+
+    //acceder al state del store
+    const cargando = useSelector( state => state.productos.loading )
+    const error = useSelector(state => state.productos.error )
 
     //llamar el action
     const agregarProducto = producto => dispatch( crearNuevoProductoAction(producto) )
@@ -31,6 +38,9 @@ const NuevoProducto = () => {
             nombre,
             precio
         })
+
+        //redireccionar
+        navigate('/')
     } 
 
   return (
@@ -76,6 +86,9 @@ const NuevoProducto = () => {
                         >Agregar</button>
 
                     </form>
+
+                    { cargando && <p>Cargando... </p> }
+                    { error && <p className='alert alert-danger p2 mt-4 text-center'>Hubo un error </p> }
                 </div>
             </div>
         </div>
