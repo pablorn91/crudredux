@@ -1,6 +1,38 @@
-import React from 'react'
+import { useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+//Actions de Redux
+import { crearNuevoProductoAction } from '../actions/productoActions'
 
 const NuevoProducto = () => {
+
+    const [ nombre, setNombre ] = useState('')
+    const [ precio, setPrecio ] = useState(0)
+
+    //utilizar useDispatch y crea una funcion
+    const dispatch = useDispatch()
+
+    //llamar el action
+    const agregarProducto = producto => dispatch( crearNuevoProductoAction(producto) )
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        setNombre(nombre.trim())
+
+        //validar formulario
+        if (nombre === '' || precio <= 0) {
+            return
+        }
+
+        //si no hay errores
+
+        //crear el nuevo producto
+        agregarProducto({
+            nombre,
+            precio
+        })
+    } 
+
   return (
     <div className='row justify-content-center'>
         
@@ -11,7 +43,9 @@ const NuevoProducto = () => {
                         Agregar Nuevo Producto
                     </h2>
 
-                    <form>
+                    <form
+                        onSubmit={handleSubmit}
+                    >
                         <div className='form-group'>
                             <label htmlFor='nombre'>Nombre Producto</label>
                             <input 
@@ -19,6 +53,8 @@ const NuevoProducto = () => {
                                 className='form-control'
                                 placeholder='Nombre Producto' 
                                 name='nombre'
+                                value={nombre}
+                                onChange={ e => setNombre(e.target.value) }
                             />
                         </div>
 
@@ -29,6 +65,8 @@ const NuevoProducto = () => {
                                 className='form-control'
                                 placeholder='Precio Producto' 
                                 name='precio'
+                                value={precio}
+                                onChange={ e => setPrecio(Number(e.target.value)) }
                             />
                         </div>
 
