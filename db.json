@@ -2,8 +2,8 @@
   "productos": [
     {
       "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
+      "nombre": "Jugo de Naranja rico",
+      "precio": "12"
     },
     {
       "nombre": "Jugo de Naranja",
@@ -11,8 +11,8 @@
       "id": 3
     },
     {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
+      "nombre": "Rib Eye 899g",
+      "precio": "300",
       "id": 4
     },
     {
