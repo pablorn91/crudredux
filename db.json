@@ -24,6 +24,11 @@
       "nombre": "Jamon Ahumado",
       "precio": 400,
       "id": 6
+    },
+    {
+      "nombre": "Pollo Frito",
+      "precio": 700,
+      "id": 7
     }
   ]
 }
